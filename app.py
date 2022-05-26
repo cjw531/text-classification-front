@@ -3,7 +3,7 @@ import requests
 
 def send_request(text, type):
     files = {
-        'base_text': (None, text),
+        'text': (None, text),
         'type': (None, type),
     }
     response = requests.post('https://main-text-classification-server-cjw531.endpoint.ainize.ai/predict', files=files)
