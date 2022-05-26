@@ -6,7 +6,7 @@ def send_request(text, type):
         'text': (None, text),
         'type': (None, type),
     }
-    response = requests.post('https://main-text-classification-server-cjw531.endpoint.ainize.ai/predict', files=files)
+    response = requests.post('http://192.168.1.5:5000/predict', files=files)
     status_code = response.status_code
 
     return status_code, response
@@ -23,8 +23,6 @@ binary_base_text = st.text_input("Type Disaster or Non-Disaster Tweets", "Last w
 if st.button("Predict Binary"):
     text = binary_base_text.title()
     status_code, response = send_request(text, "1")
-    print(status_code)
-    print(response)
     if status_code == 200:
         prediction = response.json()
         st.success(prediction["CNN prediction"] + '\t' + prediction['BERT prediction'])
