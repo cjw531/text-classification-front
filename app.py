@@ -14,8 +14,6 @@ def send_request(text, type):
 
 st.title("Performance Comparison of Binary and Multi Class Text Classification Models With CNN & BERT + CNN Models")
 
-# col1, col2 = st.columns(2) # set up 2 columns
-
 st.header("Binary Classification") # binary classification section
 st.markdown("The pre-trained binary classification CNN and BERT + CNN models will classify whether it is a disaster-related Tweets or not.")
 
