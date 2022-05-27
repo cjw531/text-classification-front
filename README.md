@@ -1,4 +1,4 @@
-# text-classification-front
+# Ainize Frontend for Text Classification
 
 [![Run on Ainize](https://ainize.ai/images/run_on_ainize_button.svg)](https://ainize.web.app/redirect?git_repo=https://github.com/cjw531/text-classification-front)
 

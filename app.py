@@ -1,6 +1,21 @@
 import streamlit as st
 import requests
 
+# global variable to map class values
+binary_map = {
+    '0': "Non-Disaster Tweet",
+    '1': "Disaster Tweet"
+}
+multi_map = {
+    '0': "automobile",
+    '1': "entertainment",
+    '2': "politics",
+    '3': "science",
+    '4': "sports",
+    '5': "technology",
+    '6': "world"
+}
+
 def send_request(text, type):
     files = {
         'text': (None, text),
@@ -25,7 +40,10 @@ if st.button("Predict Binary"):
     print(response)
     if status_code == 200:
         prediction = response.json()
-        st.success(prediction["CNN prediction"] + '\t' + prediction['BERT prediction'])
+        cnn_pred = binary_map[prediction["CNN prediction"]]
+        bert_pred = binary_map[prediction['BERT prediction']]
+        st.success('CNN Prediction: ' + cnn_pred)
+        st.success('CNN + BERT Prediction: ' + bert_pred)
     else:
         st.error(str(status_code) + " Error")
 
@@ -41,6 +59,9 @@ if st.button("Predict Multi"):
     status_code, response = send_request(text, '2')
     if status_code == 200:
         prediction = response.json()
-        st.success(prediction["CNN prediction"] + '\t' + prediction['BERT prediction'])
+        cnn_pred = multi_map[prediction["CNN prediction"]]
+        bert_pred = multi_map[prediction['BERT prediction']]
+        st.success('CNN Prediction: ' + cnn_pred)
+        st.success('CNN + BERT Prediction: ' + bert_pred)
     else:
         st.error(str(status_code) + " Error")
