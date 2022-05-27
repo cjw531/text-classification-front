@@ -65,7 +65,7 @@ with st.expander("Accuracy (%)"):
     df = df.rename(columns={'columns':'index'}).set_index('index')
     st.bar_chart(df)
 
-binary_base_text = st.text_input("Type Disaster or Non-Disaster Tweets", "Last week, around 21 people were assasinated in Texas due to mass shooting.")
+binary_base_text = st.text_input("Type Disaster or Non-Disaster Tweets", "Last week, around 21 people were assassinated in Texas due to mass shooting.")
 if st.button("Predict Binary"):
     text = binary_base_text.title()
     status_code, response = send_request(text, "1")
@@ -75,7 +75,7 @@ if st.button("Predict Binary"):
         prediction = response.json()
         cnn_pred = binary_map[prediction["CNN prediction"]]
         bert_pred = binary_map[prediction['BERT prediction']]
-        st.success('CNN + BERT Prediction: ' + bert_pred)
+        st.success('BERT + CNN Prediction: ' + bert_pred)
         st.success('CNN Prediction: ' + cnn_pred)
     else:
         st.error(str(status_code) + " Error")
@@ -126,7 +126,7 @@ if st.button("Predict Multiclass"):
         prediction = response.json()
         cnn_pred = multi_map[prediction["CNN prediction"]]
         bert_pred = multi_map[prediction['BERT prediction']]
-        st.success('CNN + BERT Prediction: ' + bert_pred)
+        st.success('BERT + CNN Prediction: ' + bert_pred)
         st.success('CNN Prediction: ' + cnn_pred)
     else:
         st.error(str(status_code) + " Error")
